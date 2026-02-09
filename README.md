@@ -32,6 +32,7 @@ mysite/
 ## Routing
 
 yoav.ch                → nginx → /var/www/website
+
 schmoundcloud.yoav.ch  → nginx → /var/www/schmoundcloud
 
 ## Cloudflare DNS
@@ -78,4 +79,11 @@ sudo systemctl restart fail2ban
 check:
 ```
 sudo fail2ban-client status sshd
+```
+
+## Start up everything
+
+run:
+```
+docker compose up -d
 ```
