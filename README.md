@@ -35,7 +35,22 @@ yoav.ch                → nginx → /var/www/website
 
 schmoundcloud.yoav.ch  → nginx → /var/www/schmoundcloud
 
-## Cloudflare DNS
+## Create Cloudflare tunnel
+run this once:
+```
+docker run -it --rm \
+  -v $(pwd)/cloudflared:/etc/cloudflared \
+  cloudflare/cloudflared tunnel login
+
+```
+then:
+```
+docker run -it --rm \
+  -v $(pwd)/cloudflared:/etc/cloudflared \
+  cloudflare/cloudflared tunnel create mysite
+```
+
+### create Cloudflare DNS route
 
 run this once:
 ```
@@ -48,7 +63,7 @@ docker run -it --rm \
   cloudflare/cloudflared tunnel route dns mysite schmoundcloud.yoav.ch
 
 ```
-we should see both DNS records in Cloudflare as CNAME → tunnel.
+that should create a `cloudflared/mysite.json` file and we should see both DNS records in Cloudflare as CNAME → tunnel.
 
 ## Fail2Ban 
 
