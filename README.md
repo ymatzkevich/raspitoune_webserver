@@ -71,6 +71,12 @@ cloudflared/
 └── xxxx.json
 ```
 
+"(optional) delete cert.pem file:
+
+for a bit more safety and security you can also delete the generated cert.pem file, this will prevent you from creating more cloudflare resources but your tunnel will keep working with the .json file. You can still create new DNS entries for example but they would need to be done through the dashboard then."
+
+(see https://ilayk.com/2021/03/25/cloudflared for more useful info)
+
 ### create Cloudflare DNS route
 
 run this once:
