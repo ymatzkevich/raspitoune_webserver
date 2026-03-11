@@ -11,6 +11,17 @@ services:
     networks:
       - mysite
 
+  node-server:
+    image: node:20-alpine
+    container_name: node-server
+    working_dir: /app
+    command: node server.js
+    volumes:
+      - ./schmoundcloud:/app
+    restart: unless-stopped
+    networks:
+      - mysite
+
   cloudflared:
     image: cloudflare/cloudflared:latest
     container_name: mysite-cloudflared
