@@ -12,13 +12,12 @@ services:
       - mysite
 
   node-server:
-    image: node:20-alpine
+    build: ./schmoundcloud
     container_name: node-server
-    working_dir: /app
-    command: node server.js
+    restart: unless-stopped
     volumes:
       - ./schmoundcloud:/app
-    restart: unless-stopped
+      - /app/node_modules
     networks:
       - mysite
 
