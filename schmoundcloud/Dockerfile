@@ -1,7 +1,10 @@
 FROM node:20-alpine
 
 # Install audiowaveform (BBC tool)
-RUN apk add --no-cache audiowaveform
+RUN apk add --no-cache curl \
+ && curl -L -o /usr/local/bin/audiowaveform \
+    https://github.com/bbc/audiowaveform/releases/latest/download/audiowaveform-linux-amd64 \
+ && chmod +x /usr/local/bin/audiowaveform
 
 # Create app directory
 WORKDIR /app
