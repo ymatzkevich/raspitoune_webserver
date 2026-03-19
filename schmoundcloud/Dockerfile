@@ -1,10 +1,16 @@
-FROM node:20-alpine
+FROM node:20-bookworm-slim
 
-# Install audiowaveform (BBC tool)
-RUN apk add --no-cache curl \
- && curl -L -o /usr/local/bin/audiowaveform \
-    https://github.com/bbc/audiowaveform/releases/latest/download/audiowaveform-linux-amd64 \
- && chmod +x /usr/local/bin/audiowaveform
+# Install audiowaveform
+RUN apt-get update \
+ && apt-get install -y curl \
+ && curl -L -o /tmp/audiowaveform.deb \
+    https://github.com/bbc/audiowaveform/releases/download/1.10.2/audiowaveform_1.10.2-1-13_amd64.deb \
+ && apt-get install -y /tmp/audiowaveform.deb \
+ && rm /tmp/audiowaveform.deb \
+ && rm -rf /var/lib/apt/lists/*
+
+# Verify
+RUN audiowaveform --help
 
 # Create app directory
 WORKDIR /app

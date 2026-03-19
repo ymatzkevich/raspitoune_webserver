@@ -3,4 +3,5 @@ cloudflared/*.json
 cloudflared/config.yml
 
 schmoundcloud/
+!schmoundcloud/Dockerfile
 website/
