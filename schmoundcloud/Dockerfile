@@ -2,11 +2,8 @@ FROM node:20-bookworm-slim
 
 # Install audiowaveform
 RUN apt-get update \
- && apt-get install -y curl \
- && curl -L -o /tmp/audiowaveform.deb \
-    https://github.com/bbc/audiowaveform/releases/download/1.10.2/audiowaveform_1.10.2-1-12_amd64.deb \
- && apt-get install -y /tmp/audiowaveform.deb \
- && rm /tmp/audiowaveform.deb \
+ && dpkg -i /tmp/audiowaveform.deb || true \
+ && apt-get -f install -y \
  && rm -rf /var/lib/apt/lists/*
 
 # Verify
