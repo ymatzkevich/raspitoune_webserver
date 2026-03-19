@@ -4,7 +4,7 @@ FROM node:20-bookworm-slim
 RUN apt-get update \
  && apt-get install -y curl \
  && curl -L -o /tmp/audiowaveform.deb \
-    https://github.com/bbc/audiowaveform/releases/download/1.10.2/audiowaveform-1.10.2-1-12.amd64.deb \
+    https://github.com/bbc/audiowaveform/releases/download/1.10.2/audiowaveform_1.10.2-1-12_amd64.deb \
  && apt-get install -y /tmp/audiowaveform.deb \
  && rm /tmp/audiowaveform.deb \
  && rm -rf /var/lib/apt/lists/*
