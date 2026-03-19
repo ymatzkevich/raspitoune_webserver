@@ -1,4 +1,4 @@
-FROM node:20-bookworm-slim
+FROM node:20-noble
 
 # Install audiowaveform
 RUN apt-get update \
