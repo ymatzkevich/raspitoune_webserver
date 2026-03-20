@@ -1,0 +1,7 @@
+cloudflared/cert.pem
+cloudflared/*.json
+cloudflared/config.yml
+
+schmoundcloud/*
+!schmoundcloud/Dockerfile
+website/
