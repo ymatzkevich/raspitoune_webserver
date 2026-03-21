@@ -11,6 +11,16 @@ services:
     networks:
       - mysite
 
+  node-server:
+    build: ./schmoundcloud
+    container_name: node-server
+    restart: unless-stopped
+    volumes:
+      - ./schmoundcloud:/app
+      - /app/node_modules
+    networks:
+      - mysite
+
   cloudflared:
     image: cloudflare/cloudflared:latest
     container_name: mysite-cloudflared

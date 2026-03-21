@@ -24,6 +24,7 @@ raspitoune_webserver/
 │   ├── index.html
 │   └── ...
 ├── schmoundcloud/
+│   ├── Dockerfile
 │   └── ...
 └── cloudflared/
     └── config.yml
@@ -133,6 +134,22 @@ check:
 ```bash
 sudo fail2ban-client status sshd
 ```
+
+## download npm and packages
+
+inside `schmoundcloud/`, first run:
+```
+sudo apt update
+sudo apt install nodejs npm -y
+```
+then
+
+```bash
+npm init -y
+npm install express music-metadata@7
+```
+
+this will generate `package.json` and `package-lock.json`
 
 ## Start up everything
 
