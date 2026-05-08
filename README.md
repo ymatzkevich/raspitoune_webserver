@@ -26,6 +26,8 @@ raspitoune_webserver/
 ├── schmoundcloud/
 │   ├── Dockerfile
 │   └── ...
+├── info/
+│   └── index.html
 └── cloudflared/
     └── config.yml
 ```
@@ -35,7 +37,7 @@ dont forget to run every command from `raspitoune_webserver/` !
 ## Routing
 
 yoav.ch                → nginx → /var/www/website
-
+info.yoav.ch           → nginx → /var/www/info
 schmoundcloud.yoav.ch  → nginx → /var/www/schmoundcloud
 
 ## Create Cloudflare tunnel
@@ -91,10 +93,18 @@ should output "Added CNAME yoav.ch which will route to this tunnel tunnelID=xxxx
 ```bash
 docker run -it --rm \
   -v $(pwd)/cloudflared:/etc/cloudflared \
+  cloudflare/cloudflared tunnel route dns mysite info.yoav.ch
+```
+=> "Added CNAME info.yoav.ch which will route to this tunnel tunnelID=xxxx"
+
+```bash
+docker run -it --rm \
+  -v $(pwd)/cloudflared:/etc/cloudflared \
   cloudflare/cloudflared tunnel route dns mysite schmoundcloud.yoav.ch
 ```
 => "Added CNAME schmoundcloud.yoav.ch which will route to this tunnel tunnelID=xxxx"
-and we should see both DNS records in Cloudflare as CNAME → tunnel.
+
+and we should see all DNS records in Cloudflare as CNAME → tunnel.
 
 we then change the `config.yml` accordingly with the .json filename
 ```yaml
