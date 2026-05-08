@@ -5,6 +5,9 @@ ingress:
   - hostname: yoav.ch
     service: http://nginx:80
 
+  - hostname: info.yoav.ch
+    service: http://nginx:80
+
   - hostname: schmoundcloud.yoav.ch
     service: http://nginx:80
 
